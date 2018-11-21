@@ -20,7 +20,7 @@ class ContactController extends Controller
 	{
 		$rules = [
 			'name' => 'required|min:3',
-			'area' => 'required_with:number|nullable|digits:3',
+			'area' => 'required_with:number|nullable|max:999',
 			'number' => 'required_with:area'
 		];
 
@@ -31,7 +31,7 @@ class ContactController extends Controller
 	{
 		$agenda = Contact::searchOrganized($request);
 
-		return view('contact.index', ['agenda' => $agenda]);
+		return view('contact.index', ['agenda' => $agenda, 'request' => $request]);
 	}
 
 	public function create()
